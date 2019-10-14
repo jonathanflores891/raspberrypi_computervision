@@ -66,7 +66,7 @@ while True:
         GPIO.output(servoPIN, False)
 
 #Motor Drivers
-        
+
     def stop():
         GPIO.output(in1,GPIO.LOW)
         GPIO.output(in2,GPIO.LOW)
@@ -112,7 +112,7 @@ while True:
         p1.ChangeDutyCycle(30)
         print("Right")
 
-    
+
     if not video_capture.isOpened():
         print('Unable to load camera.')
         sleep(5)
@@ -148,14 +148,14 @@ while True:
         '''
         if x <130:
            left()
-           
+
         if x > 200:
             right()
 
         if x > 130 and x < 200:
             forward()
-        
-        
+
+
     if anterior != len(faces):
         anterior = len(faces)
         log.info("faces: "+str(len(faces))+" at "+str(dt.datetime.now()))
@@ -175,20 +175,3 @@ while True:
 video_capture.release()
 cv2.destroyAllWindows()
 GPIO.cleanup()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    

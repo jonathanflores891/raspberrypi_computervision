@@ -1,3 +1,4 @@
+
 import cv2
 import sys
 import logging as log
@@ -9,9 +10,17 @@ faceCascade = cv2.CascadeClassifier(cascPath)
 log.basicConfig(filename='webcam.log',level=log.INFO)
 
 video_capture = cv2.VideoCapture(0)
+video_capture.set(3,720)
+video_capture.set(4,480)
 anterior = 0
 
+start_point = (100, 100)
+end_point = (540, 400)
+
 font = cv2.FONT_HERSHEY_SIMPLEX
+
+def redRectangle():
+    cv2.rectangle(frame, start_point, end_point, (0, 0, 255), 4)
 
 while True:
     if not video_capture.isOpened():
@@ -30,6 +39,9 @@ while True:
         minNeighbors=5,
         minSize=(30, 30)
     )
+    cv2.putText(frame, "Machine Status: ", (10, 20), font, 0.5, (0, 0, 255), 2)
+    #redRectangle()
+    cv2.rectangle(frame, start_point, end_point, (0, 0, 255), 5)
 
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:

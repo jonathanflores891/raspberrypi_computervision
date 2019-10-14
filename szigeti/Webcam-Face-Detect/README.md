@@ -54,7 +54,7 @@ while True:
         sleep(0.2)
         GPIO.output(servoPIN, False)
 
-    
+
     if not video_capture.isOpened():
         print('Unable to load camera.')
         sleep(5)
@@ -88,7 +88,7 @@ while True:
             setAngle(0)
             print('y minor than 200')
         '''
-        
+
     if anterior != len(faces):
         anterior = len(faces)
         log.info("faces: "+str(len(faces))+" at "+str(dt.datetime.now()))
@@ -107,8 +107,3 @@ while True:
 # When everything is done, release the capture
 video_capture.release()
 cv2.destroyAllWindows()
-
-
-
-
-
