@@ -1,5 +1,4 @@
-# Pyhton program to implement
-# WebCam Motion Detector
+#!/usr/bin/env python
 
 # importing OpenCV, time and Pandas library
 import cv2, time, pandas
@@ -20,7 +19,7 @@ time = []
 df = pandas.DataFrame(columns = ["Start", "End"])
 
 # Capturing video
-video = cv2.VideoCapture(0)
+video = cv2.VideoCapture(1)
 
 start_point = (100, 100)
 end_point = (540, 400)
