@@ -1,7 +1,9 @@
 
+#!/usr/bin/env python
 """
 References:
 https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_video/py_bg_subtraction/py_bg_subtraction.html
+Jonathan Flores
 """
 
 import numpy as np
@@ -41,8 +43,10 @@ while (1):
 
         screen_status("ON", (0,255,0))
 
-        cv2.putText(frame, str(datetime.now()), (10,50), font, 0.5, (0, 0, 255), 1)
+        cv2.putText(frame, str(datetime.now()), (10,40), font, 0.5, (0, 0, 255), 1)
         red_rectangle((0,255, 0))
+        cv2.rectangle(frame, (50,50), (590, 450),
+                        (0,255,0), 1)
 
         for c in contours:
 
@@ -51,12 +55,19 @@ while (1):
 
             (x, y, w, h) = cv2.boundingRect(c)
             #draw bounding box
+            #Show coordinates in X and Y
+            #cv2.putText(frame, "X : {}".format(str(x)),(x,y-40), font, 0.5, (0, 255, 0),1)
+            #cv2.putText(frame, "Y : {}".format(str(y)),(x,y-15), font, 0.5, (0, 255, 0),1)
+            #Show rectangle
+            #cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-            cv2.putText(frame, "X : {}".format(str(x)),(x,y-40), font, 0.5, (0, 255, 0),1)
-            cv2.putText(frame, "Y : {}".format(str(y)),(x,y-15), font, 0.5, (0, 255, 0),1)
-
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            if (x,y) >= (100, 100) and (x, y) <= (540, 400) or (x+w, y+h) >= (100, 100) and (x+w, y+h) <= (540, 400):
+            a = (x,y)
+            b = (x+w, y+h)
+            c = (100,100)
+            d = (540, 400)
+            #if [x,y] >= [100, 100] and [x, y] <= [540, 400] and [x+w, y+h] >= [100, 100] and [x+w, y+h] <= [540, 400]:
+            #if (a > c) and (a < d) and (b > c) and (b < d):
+            if x > 100 and y > 100 and x < 540 and y <400 or x+w > 100 and y+h > 100 and x+w < 540 and y+h <400  :
                 red_rectangle((0, 0, 255))
                 screen_status("OFF",(0, 0, 255))
                 cv2.putText(frame, " SYSTEM ALERT ", (200,250), font, 1, (0, 0, 255), 1)
@@ -66,7 +77,6 @@ while (1):
 
         if cv2.waitKey(1) & 0xFF == ord("q"):
 			break
-
 
 cap.release()
 cv2.destroyAllWindows()
